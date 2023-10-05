@@ -106,9 +106,53 @@ var trap = function(height) {
         ans+=(Math.min(left[i], right[i])) - height[i]
         console.log(ans)
     };
-    console.log(`left: ${left}`)
-    console.log(`right: ${right}`)
+    // console.log(`left: ${left}`)
+    // console.log(`right: ${right}`)
     return ans;
 };
 
-trap([0,1,0,2,1,0,1,3,2,1,2,1]);
+/*
+https://leetcode.com/problems/backspace-string-compare/
+
+Given two strings s and t, return true if they are equal when both are typed into empty text editors. '#' means a backspace character.
+Note that after backspacing an empty text, the text will continue empty.
+
+Example 1:
+Input: s = "ab#c", t = "ad#c"
+Output: true
+Explanation: Both s and t become "ac".
+
+Example 2:
+Input: s = "ab##", t = "c#d#"
+Output: true
+Explanation: Both s and t become "".
+
+Example 3:
+Input: s = "a#c", t = "b"
+Output: false
+Explanation: s becomes "c" while t becomes "b".
+ 
+Constraints:
+1 <= s.length, t.length <= 200
+s and t only contain lowercase letters and '#' characters.
+*/
+
+var backspaceCompare = function(s, t) {
+    let tempS = [];
+    let tempT = [];
+
+    for(let i = 0; i < s.length; i++) {
+        s[i] == "#" ? tempS.pop() : tempS.push(s[i]);
+    }
+
+    for(let i = 0; i < t.length; i++) {
+        t[i] == "#" ? tempT.pop() : tempT.push(t[i]);
+    }
+
+    console.log(`tempS: ${tempS}`);
+    console.log(`tempT: ${tempT}`);
+
+    return JSON.stringify(tempS) === JSON.stringify(tempT);
+};
+
+console.log(backspaceCompare( "xywrrmp", "xywrrmu#p"));
